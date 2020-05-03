@@ -39,40 +39,40 @@ const LoginPage = () => (
           setSubmitting(false)
         });
       }}
-        >
+    >
       {({
-        values,
-        errors,
-        touched,
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        isSubmitting,
-        /* and other goodies */
-      }) => (
+          values,
+          errors,
+          touched,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          isSubmitting,
+          /* and other goodies */
+        }) => (
         <form onSubmit={handleSubmit}>
-        <input
-        type="text"
-        name="userName"
-        onChange={handleChange}
-        onBlur={handleBlur}
-        value={values.userName}
-        />
-        {errors.userName && touched.userName && errors.userName}
-        <input
-        type="password"
-        name="password"
-        onChange={handleChange}
-        onBlur={handleBlur}
-        value={values.password}
-        />
-        {errors.password && touched.password && errors.password}
-        <button type="submit" disabled={isSubmitting}>
-        Submit
-        </button>
+          <input
+            type="text"
+            name="userName"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.userName}
+          />
+          {errors.userName && touched.userName && errors.userName}
+          <input
+            type="password"
+            name="password"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.password}
+          />
+          {errors.password && touched.password && errors.password}
+          <button type="submit" disabled={isSubmitting}>
+            Submit
+          </button>
         </form>
-        )}
-        </Formik>
-        </div>
-        );
-        export default LoginPage;
+      )}
+    </Formik>
+  </div>
+);
+export default LoginPage;
