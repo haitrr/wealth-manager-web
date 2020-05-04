@@ -2,6 +2,7 @@ import React from "react";
 import {Formik} from "formik";
 import {AuthenticationContext} from "./App";
 import {Redirect} from "react-router-dom";
+import {SaveToken} from "./Jwt";
 
 const LoginPage = () => {
   const [authentication, setAuthentication] = React.useContext(AuthenticationContext);
@@ -39,7 +40,7 @@ const LoginPage = () => {
               setSubmitting(false)
             } else {
               r.json().then(d => {
-                localStorage.setItem("jwt", d.token)
+                SaveToken("jwt", d.token)
                 setAuthentication(d);
                 setSubmitting(false)
               })
