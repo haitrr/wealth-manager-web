@@ -2,24 +2,31 @@ import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import AuthenticatedPage from "./AuthenticatedPage";
 import LoginPage from "./LoginPage";
+import {GetToken} from "./Jwt";
 
 export const AuthenticationContext = React.createContext([null, null])
 
 function App() {
   const [authentication, setAuthentication] = React.useState(null)
+  if (!authentication) {
+    const token = GetToken()
+    if (token) {
+      setAuthentication({token})
+    }
+  }
   return (
-    <Router>
-      <Switch>
-        <Route path="/login">
-          <LoginPage/>
-        </Route>
-        <Route>
-          <AuthenticationContext.Provider value={[authentication, setAuthentication]}>
+    <AuthenticationContext.Provider value={[authentication, setAuthentication]}>
+      <Router>
+        <Switch>
+          <Route path="/login">
+            <LoginPage/>
+          </Route>
+          <Route>
             <AuthenticatedPage/>
-          </AuthenticationContext.Provider>
-        </Route>
-      </Switch>
-    </Router>
+          </Route>
+        </Switch>
+      </Router>
+    </AuthenticationContext.Provider>
   );
 }
 
