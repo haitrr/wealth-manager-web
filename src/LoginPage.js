@@ -39,9 +39,9 @@ const LoginPage = () => {
               setErrors({userName: "there is an error"})
               setSubmitting(false)
             } else {
-              r.json().then(d => {
-                SaveToken("jwt", d.token)
-                setAuthentication(d);
+              r.json().then(data => {
+                SaveToken("jwt", data.token)
+                setAuthentication(data);
                 setSubmitting(false)
               })
             }
