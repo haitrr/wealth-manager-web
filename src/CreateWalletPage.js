@@ -13,7 +13,7 @@ const CreateWalletPage = () => {
     <h1>Create Wallet</h1>
     <Formik initialValues={{name: ''}} onSubmit={(values, {setSubmitting ,setErrors}) => {
       setSubmitting(true)
-      fetch(process.env.REACT_APP_WM_ENDPOINT + "/wallet", {
+      fetch(process.env.REACT_APP_WM_ENDPOINT + "/wallets", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -36,8 +36,6 @@ const CreateWalletPage = () => {
       {({
 
           values,
-          errors,
-          touched,
           handleChange,
           handleBlur,
           handleSubmit,
@@ -45,7 +43,7 @@ const CreateWalletPage = () => {
         }) =>
         <form onSubmit={handleSubmit}>
           <label>Name</label>
-          <input onBlur={handleBlur} name="name" onChange={handleChange}/>
+          <input onBlur={handleBlur} name="name" value={values.name} onChange={handleChange}/>
           <button disabled={isSubmitting} type="submit">Create</button>
         </form>}
     </Formik>
