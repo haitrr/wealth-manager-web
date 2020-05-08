@@ -4,6 +4,7 @@ import {Redirect, Route, Switch} from "react-router-dom";
 import {AuthenticationContext} from "./App";
 import WalletsPage from "./WalletsPage";
 import CreateWalletPage from "./CreateWalletPage";
+import WalletPage from "./WalletPage";
 
 
 const AuthenticatedPage = () => {
@@ -18,6 +19,9 @@ const AuthenticatedPage = () => {
       </Route>
       <Route exact path="/wallets/create">
         <CreateWalletPage/>
+      </Route>
+      <Route path="/wallets/:id">
+        <WalletPage/>
       </Route>
     </Switch>
   }

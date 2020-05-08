@@ -22,13 +22,14 @@ const WalletsPage = () => {
     }).catch(e => {
       alert(e.message)
     })
-  },[])
+  }, [])
   return <div>
     <h1>Wallets</h1>
     <Link to="/wallets/create">Create</Link>
     {wallets.map(wallet => <div key={wallet.id}>
         <span>{wallet.name}</span>
         <span>{wallet.balance}</span>
+        <Link to={`/wallets/${wallet.id}`}>Show</Link>
       </div>
     )}
   </div>
