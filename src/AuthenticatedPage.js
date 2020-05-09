@@ -5,6 +5,7 @@ import {AuthenticationContext} from "./App";
 import WalletsPage from "./WalletsPage";
 import CreateWalletPage from "./CreateWalletPage";
 import WalletPage from "./WalletPage";
+import LogoutPage from "./LogoutPage";
 
 
 const AuthenticatedPage = () => {
@@ -22,6 +23,9 @@ const AuthenticatedPage = () => {
       </Route>
       <Route path="/wallets/:id">
         <WalletPage/>
+      </Route>
+      <Route exact path="/logout">
+        <LogoutPage/>
       </Route>
     </Switch>
   }

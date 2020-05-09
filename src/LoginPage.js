@@ -6,8 +6,7 @@ import {SaveToken} from "./Jwt";
 
 const LoginPage = () => {
   const [authentication, setAuthentication] = React.useContext(AuthenticationContext);
-  console.log(authentication)
-  if (authentication != null) {
+  if (authentication.token) {
     return <Redirect to="/"/>
   }
 
@@ -40,7 +39,7 @@ const LoginPage = () => {
               setSubmitting(false)
             } else {
               r.json().then(data => {
-                SaveToken("jwt", data.token)
+                SaveToken(data.token)
                 setAuthentication(data);
                 setSubmitting(false)
               })

@@ -1,14 +1,15 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {Router, Route, Switch} from "react-router-dom";
 import AuthenticatedPage from "./AuthenticatedPage";
 import LoginPage from "./LoginPage";
 import {GetToken} from "./Jwt";
+import history from "./history";
 
-export const AuthenticationContext = React.createContext([null, null])
+export const AuthenticationContext = React.createContext([{}, null])
 
 function App() {
-  const [authentication, setAuthentication] = React.useState(null)
-  if (!authentication) {
+  const [authentication, setAuthentication] = React.useState({})
+  if (!authentication.token) {
     const token = GetToken()
     if (token) {
       setAuthentication({token})
@@ -16,7 +17,7 @@ function App() {
   }
   return (
     <AuthenticationContext.Provider value={[authentication, setAuthentication]}>
-      <Router>
+      <Router history={history}>
         <Switch>
           <Route path="/login">
             <LoginPage/>
