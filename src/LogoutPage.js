@@ -1,7 +1,7 @@
 import {AuthenticationContext} from "./App";
-import React, {useEffect} from "react";
+import React from "react";
 import {Redirect} from "react-router-dom";
-import {RemoveToken, SaveToken} from "./Jwt";
+import {RemoveToken} from "./Jwt";
 
 const LogoutPage = () => {
   const [authentication, setAuthentication] = React.useContext(AuthenticationContext)

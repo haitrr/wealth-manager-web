@@ -3,6 +3,7 @@ import {Formik} from "formik";
 import {AuthenticationContext} from "./App";
 import {Redirect} from "react-router-dom";
 import {SaveToken} from "./Jwt";
+import {getEndpoint} from "./api";
 
 const LoginPage = () => {
   const [authentication, setAuthentication] = React.useContext(AuthenticationContext);
@@ -26,7 +27,7 @@ const LoginPage = () => {
           return errors;
         }}
         onSubmit={(values, {setSubmitting, setErrors}) => {
-          fetch("http://localhost:5000/authentication", {
+          fetch(`${getEndpoint()}/authentication`, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(values)
