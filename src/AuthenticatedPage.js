@@ -6,6 +6,7 @@ import WalletsPage from "./WalletsPage";
 import CreateWalletPage from "./CreateWalletPage";
 import WalletPage from "./WalletPage";
 import LogoutPage from "./LogoutPage";
+import AddTransactionPage from "./AddTransactionPage";
 
 
 const AuthenticatedPage = () => {
@@ -26,6 +27,9 @@ const AuthenticatedPage = () => {
       </Route>
       <Route exact path="/logout">
         <LogoutPage/>
+      </Route>
+      <Route exact path="/transactions/add">
+        <AddTransactionPage/>
       </Route>
     </Switch>
   }
