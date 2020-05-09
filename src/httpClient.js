@@ -1,13 +1,13 @@
 import {GetToken} from "./Jwt";
 import history from "./history";
 
-export function get(url) {
+export function get(url, params) {
   const headers = {}
   const token = GetToken()
   if (token) {
     headers.Authorization = "bearer " + token
   }
-  return fetch(url, {method: "GET", headers: headers}).then(response => {
+  return fetch(url + buildQueryString(params), {method: "GET", headers: headers}).then(response => {
     if (response.ok) {
       return response.json()
     } else if (response.status === 401) {
@@ -22,4 +22,22 @@ export function get(url) {
   }).catch(e => {
     throw e
   })
+}
+
+function buildQueryString(params) {
+  if (!params) {
+    return "";
+  }
+  const keys = Object.keys(params)
+  if (keys.length === 0) {
+    return ""
+  }
+  let query = "?"
+  keys.forEach(key => {
+    query += `${key}=${params[key]}&`
+  })
+  if (query[query.length - 1] === "&") {
+    return query.substr(0, query.length - 1)
+  }
+  return query;
 }
