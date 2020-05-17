@@ -16,10 +16,12 @@ const WalletPage = () => {
   if (!wallet) {
     return <h1>Loading</h1>
   }
+
+  console.log(transactions);
   return <div>
-    <div>{wallet.name}</div>
+    <h1>{wallet.name}</h1>
     <div>{wallet.balance}</div>
-    {transactions.forEach(transaction => <div>{transaction.amount}</div>)}
+    {transactions.map(transaction => <div>{transaction.amount}</div>)}
   </div>
 }
 

@@ -27,8 +27,8 @@ const WalletsPage = () => {
     <h1>Wallets</h1>
     <Link to="/wallets/create">Create</Link>
     {wallets.map(wallet => <div key={wallet.id}>
-        <span>{wallet.name}</span>
-        <span>{wallet.balance}</span>
+        <div>{wallet.name}</div>
+        <div>{wallet.balance}</div>
         <Link to={`/wallets/${wallet.id}`}>Show</Link>
       </div>
     )}
