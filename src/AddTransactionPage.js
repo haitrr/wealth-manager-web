@@ -23,13 +23,24 @@ const AddTransactionPage = () => {
   }}>
     {({handleSubmit, values, isSubmitting, handleBlur, handleChange}) => {
       return <form onSubmit={handleSubmit}>
-        <input required name="amount" value={values.amount} onChange={handleChange} type="number" placeholder="Amount"/>
-        <select required name="walletId" onChange={handleChange} onBlur={handleBlur} value={values.walletId}>
-          <option></option>
-          {wallets.map((wallet) => {
-            return <option key={wallet.id} value={wallet.id}>{wallet.name}</option>
-          })}
-        </select>
+        <div>
+          <label>Amount :</label>
+          <input required name="amount" value={values.amount} onChange={handleChange} type="number"
+                 placeholder="Amount"/>
+        </div>
+        <div>
+          <label>Wallet :</label>
+          <select required name="walletId" onChange={handleChange} onBlur={handleBlur} value={values.walletId}>
+            <option></option>
+            {wallets.map((wallet) => {
+              return <option key={wallet.id} value={wallet.id}>{wallet.name}</option>
+            })}
+          </select>
+        </div>
+        <div>
+          <label>Category :</label>
+          <select></select>
+        </div>
         <button type="submit" disabled={isSubmitting}>Add</button>
       </form>
     }}
