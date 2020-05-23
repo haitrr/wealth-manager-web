@@ -1,4 +1,3 @@
-import {AuthenticationContext} from "./App";
 import {getEndpoint} from "./api";
 import {Formik} from "formik";
 import React from "react";
@@ -18,6 +17,7 @@ const AddTransactionPage = () => {
 
   return <Formik initialValues={{walletId: null}} onSubmit={(values, {setSubmitting}) => {
     values.walletId = parseInt(values.walletId)
+    values.categoryId = parseInt(values.categoryId)
     setSubmitting(true)
     post(getEndpoint() + "/transactions", values).then(d => {
       setSubmitting(false)
@@ -37,7 +37,7 @@ const AddTransactionPage = () => {
         <div>
           <label>Wallet :</label>
           <select required name="walletId" onChange={handleChange} onBlur={handleBlur} value={values.walletId}>
-            <option></option>
+            <option/>
             {wallets.map((wallet) => {
               return <option key={wallet.id} value={wallet.id}>{wallet.name}</option>
             })}
@@ -45,8 +45,13 @@ const AddTransactionPage = () => {
         </div>
         <div>
           <label>Category :</label>
-          <select>
-            <option></option>
+          <select
+            required name="categoryId"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.categoryId}
+          >
+            <option/>
             {categories.map(category => {
               return <option key={category.id} value={category.id}>{category.name}</option>
             })}
