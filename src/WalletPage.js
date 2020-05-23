@@ -2,11 +2,13 @@ import React from "react";
 import {useParams} from "react-router-dom";
 import {get} from "./httpClient";
 import {getEndpoint} from "./api";
+import {TransactionCategoryContext} from "./AuthenticatedPage";
 
 const WalletPage = () => {
   const {id} = useParams()
   const [wallet, setWallet] = React.useState(null)
   const [transactions, setTransactions] = React.useState([])
+  const [transactionCategory] = React.useContext(TransactionCategoryContext)
   React.useEffect(() => {
     get(`${getEndpoint()}/wallets/${id}`).then(data => setWallet(data)).catch(e => alert(e))
   }, [])
@@ -17,11 +19,23 @@ const WalletPage = () => {
     return <h1>Loading</h1>
   }
 
-  console.log(transactions);
+  if(transactionCategory.categories === null) {
+    return <h1>Loading</h1>
+  }
+
   return <div>
     <h1>{wallet.name}</h1>
     <div>{wallet.balance}</div>
-    {transactions.map(transaction => <div>{transaction.amount}</div>)}
+    <h1>Transactions</h1>
+    {transactions.map(transaction => <div>
+      <div>
+        {transaction.amount}
+      </div>
+      <div>
+        {transactionCategory.categories.find(c => c.id === transaction.categoryId)?.name}
+      </div>
+      <hr/>
+    </div>)}
   </div>
 }
 

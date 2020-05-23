@@ -7,9 +7,15 @@ import history from "./history";
 
 const AddTransactionPage = () => {
   const [wallets, setWallets] = React.useState([])
+  const [categories, setCategories] = React.useState([])
   React.useEffect(() => {
     get(getEndpoint() + "/wallets").then(d => setWallets(d.items))
   }, [])
+
+  React.useEffect(() => {
+    get(getEndpoint() + "/transaction-categories").then(d => setCategories(d.items))
+  }, [])
+
   return <Formik initialValues={{walletId: null}} onSubmit={(values, {setSubmitting}) => {
     values.walletId = parseInt(values.walletId)
     setSubmitting(true)
@@ -39,7 +45,12 @@ const AddTransactionPage = () => {
         </div>
         <div>
           <label>Category :</label>
-          <select></select>
+          <select>
+            <option></option>
+            {categories.map(category => {
+              return <option key={category.id} value={category.id}>{category.name}</option>
+            })}
+          </select>
         </div>
         <button type="submit" disabled={isSubmitting}>Add</button>
       </form>
