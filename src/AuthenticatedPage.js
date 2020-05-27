@@ -9,8 +9,9 @@ import LogoutPage from "./LogoutPage";
 import AddTransactionPage from "./AddTransactionPage";
 import {get} from "./httpClient";
 import {getEndpoint} from "./api";
+import CategoriesPage from "./CategoriesPage";
 
-export const TransactionCategoryContext = React.createContext([{categories: null}, null])
+export const TransactionCategoryContext = React.createContext([{categories: null, tree: null}, null])
 export const WalletContext = React.createContext([{wallets: null}, null])
 
 const AuthenticatedPage = () => {
@@ -37,6 +38,9 @@ const AuthenticatedPage = () => {
           </Route>
           <Route exact path="/wallets">
             <WalletsPage/>
+          </Route>
+          <Route exact path="/categories">
+            <CategoriesPage/>
           </Route>
           <Route exact path="/wallets/create">
             <CreateWalletPage/>
