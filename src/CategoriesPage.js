@@ -1,5 +1,6 @@
 import React from "react";
 import useTransactionCategoriesTree from "./useTransactionCategoriesTree";
+import {Link} from "react-router-dom";
 
 const CategoriesTree = ({tree}) => {
   return <div style={{marginLeft: "0.5rem"}}>
@@ -10,12 +11,15 @@ const CategoriesTree = ({tree}) => {
 
 const CategoriesPage = () => {
   const [tree] = useTransactionCategoriesTree()
-  if(!tree) {
+  if (!tree) {
     return <div>Loading</div>
   }
   console.log(tree)
 
-  return <CategoriesTree tree={tree}/>
+  return <div>
+    <Link to='/categories/create'>Create</Link>
+    <CategoriesTree tree={tree}/>
+  </div>
 }
 
 export default CategoriesPage;
