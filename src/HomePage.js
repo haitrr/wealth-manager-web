@@ -3,14 +3,7 @@ import {Link} from "react-router-dom";
 import {WalletContext} from "./AuthenticatedPage";
 import {get} from "./httpClient";
 import {getEndpoint} from "./api";
-
-const useTransactionsCategories = () => {
-  const [transactionCategories, setTransactionCategories] = React.useState(null)
-  React.useEffect(() => {
-    get(`${getEndpoint()}/transaction-categories`).then(data => setTransactionCategories(data.items))
-  }, [])
-  return transactionCategories
-}
+import useTransactionsCategories from "./useTransactionCategories";
 
 const mapTransactionCategoriesName = (transactions, categories) => {
   transactions.forEach(t => {
