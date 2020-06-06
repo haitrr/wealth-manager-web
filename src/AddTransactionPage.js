@@ -7,10 +7,10 @@ import useTransactionsCategories from "./useTransactionCategories";
 
 const AddTransactionPage = () => {
   const [wallets, setWallets] = React.useState([])
-  const categories = useTransactionsCategories()
   React.useEffect(() => {
     get(getEndpoint() + "/wallets").then(d => setWallets(d.items))
   }, [])
+  const categories = useTransactionsCategories()
 
   return <Formik initialValues={{walletId: null}} onSubmit={(values, {setSubmitting}) => {
     values.walletId = parseInt(values.walletId)
