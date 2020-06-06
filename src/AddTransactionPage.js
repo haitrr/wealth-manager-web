@@ -3,16 +3,13 @@ import {Formik} from "formik";
 import React from "react";
 import {get, post} from "./httpClient";
 import history from "./history";
+import useTransactionsCategories from "./useTransactionCategories";
 
 const AddTransactionPage = () => {
   const [wallets, setWallets] = React.useState([])
-  const [categories, setCategories] = React.useState([])
+  const categories = useTransactionsCategories()
   React.useEffect(() => {
     get(getEndpoint() + "/wallets").then(d => setWallets(d.items))
-  }, [])
-
-  React.useEffect(() => {
-    get(getEndpoint() + "/transaction-categories").then(d => setCategories(d.items))
   }, [])
 
   return <Formik initialValues={{walletId: null}} onSubmit={(values, {setSubmitting}) => {
