@@ -12,6 +12,7 @@ import {getEndpoint} from "./api";
 import CategoriesPage from "./CategoriesPage";
 import CategoryCreatePage from "./CategoryCreatePage";
 import Header from "./Header";
+import StatisticPage from "./StatisticPage";
 
 export const TransactionCategoryContext = React.createContext([{categories: null, tree: null}, null])
 export const WalletContext = React.createContext([{wallets: null}, null])
@@ -59,6 +60,9 @@ const AuthenticatedPage = () => {
           </Route>
           <Route exact path="/transactions/add">
             <AddTransactionPage/>
+          </Route>
+          <Route exact path="/stats">
+            <StatisticPage/>
           </Route>
         </Switch>
       </WalletContext.Provider>

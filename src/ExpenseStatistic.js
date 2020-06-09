@@ -1,0 +1,50 @@
+import {useTransactions} from "./useTransactions";
+import React from "react";
+import {PieChart, Pie, Legend, Cell, Label} from 'recharts'
+
+const colors = ["#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#0099c6", "#dd4477", "#66aa00", "#b82e2e", "#316395", "#3366cc", "#994499", "#22aa99", "#aaaa11", "#6633cc", "#e67300", "#8b0707", "#651067", "#329262", "#5574a6", "#3b3eac", "#b77322", "#16d620", "#b91383", "#f4359e", "#9c5935", "#a9c413", "#2a778d", "#668d1c", "#bea413", "#0c5922", "#743411"]
+
+const getExpenseByCategory = (transations) => {
+  const map = {}
+  transations.forEach(t => {
+    if (map[t.categoryId]) {
+      map[t.categoryId].amount += t.amount
+    } else {
+      map[t.categoryId] = {name: t.categoryName, amount: t.amount}
+    }
+  })
+  const rs = []
+  Object.keys(map).forEach(k => rs.push(map[k]))
+  return rs;
+}
+
+const ExpenseStatistic = ({dateFrom, dateTo}) => {
+  const transactions = useTransactions(dateFrom, dateTo)
+  if (!transactions) {
+    return <h2>Loading</h2>
+  }
+  const expenseByCategory = getExpenseByCategory(transactions)
+  console.log(expenseByCategory)
+  const total = expenseByCategory.reduce((a,b) => a + b.amount, 0)
+  return <div>
+    <h2>Total: {total}</h2>
+    <PieChart width={500} height={500}>
+      <Legend verticalAlign="top" height={36}/>
+      <Pie data={expenseByCategory} dataKey="amount" nameKey="name" label={(entry) => {
+        console.log(entry)
+        return entry.name + " ("+ entry.percent.toFixed(2)*100 +"%)";
+      }}>
+        {
+          expenseByCategory.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={colors[index]}/>
+          ))
+        }
+      </Pie>
+    </PieChart>
+    {expenseByCategory.map(e => {
+      return <div>{e.name} : {e.amount}</div>
+    })}
+  </div>
+}
+
+export default ExpenseStatistic;
