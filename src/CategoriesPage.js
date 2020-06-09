@@ -14,7 +14,6 @@ const CategoriesPage = () => {
   if (!tree) {
     return <div>Loading</div>
   }
-  console.log(tree)
 
   return <div>
     <Link to='/categories/create'>Create</Link>
