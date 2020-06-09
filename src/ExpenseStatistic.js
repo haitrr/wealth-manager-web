@@ -42,7 +42,7 @@ const ExpenseStatistic = ({dateFrom, dateTo}) => {
       </Pie>
     </PieChart>
     {expenseByCategory.map(e => {
-      return <div>{e.name} : {e.amount}</div>
+      return <div key={e.name}>{e.name} : {e.amount}</div>
     })}
   </div>
 }
