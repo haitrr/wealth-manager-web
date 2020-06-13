@@ -1,10 +1,10 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {WalletContext} from "./AuthenticatedPage";
 import {useTransactions} from "./useTransactions";
+import useWallets from "./useWallets";
 
 const Transactions = () => {
-  const transactions = useTransactions()
+  const [transactions] = useTransactions()
   if (transactions === null) {
     return <h3>Loading</h3>
   }
@@ -19,8 +19,9 @@ const Transactions = () => {
 
 
 const HomePage = () => {
-  const [wallet] = React.useContext(WalletContext)
-  const balance = wallet.wallets.reduce((a, b) => a.balance + b.balance)
+  const wallets = useWallets()
+  if(wallets == null) return <h1>Loading</h1>
+  const balance = wallets.reduce((a, b) => a + b.balance, 0)
   return <div>
     <h1>Home Page</h1>
     <Link to="/wallets">Wallets</Link>

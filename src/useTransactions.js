@@ -14,15 +14,17 @@ const mapTransactionCategoriesName = (transactions, categories) => {
   })
 }
 
-export const useTransactions = (dateFrom, dateTo) => {
+export const useTransactions = (defaultFilters) => {
   const [transactions, setTransactions] = React.useState(null)
+  const [filters, setFilters] = React.useState(defaultFilters)
+  console.log(filters)
   React.useEffect(() => {
-    get(`${getEndpoint()}/transactions`, {dateFrom, dateTo}).then(data => setTransactions(data.items))
-  }, [])
+    get(`${getEndpoint()}/transactions`, filters).then(data => setTransactions(data.items))
+  }, [filters])
   const categories = useTransactionsCategories()
   if (categories === null || transactions == null) {
-    return null
+    return [null,null]
   }
   mapTransactionCategoriesName(transactions, categories)
-  return transactions
+  return [transactions, setFilters]
 }

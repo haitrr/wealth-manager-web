@@ -13,60 +13,51 @@ import CategoriesPage from "./CategoriesPage";
 import CategoryCreatePage from "./CategoryCreatePage";
 import Header from "./Header";
 import StatisticPage from "./StatisticPage";
+import useWallets from "./useWallets";
 
 export const TransactionCategoryContext = React.createContext([{categories: null, tree: null}, null])
 export const WalletContext = React.createContext([{wallets: null}, null])
 
 const AuthenticatedPage = () => {
   const [authentication] = React.useContext(AuthenticationContext)
-  const [transactionCategory, setTransactionCategory] = React.useState({categories: null})
-  const [wallet, setWallet] = React.useState({wallets: null})
-  React.useEffect(() => {
-    get(`${getEndpoint()}/transaction-categories`).then(data => setTransactionCategory({categories: data.items}))
-  }, [])
-  React.useEffect(() => {
-    get(`${getEndpoint()}/wallets`).then(data => setWallet({wallets: data.items}))
-  }, [])
-
-  if(wallet.wallets === null) {
+  const wallets = useWallets()
+  if (wallets === null) {
     return <h1>Loading</h1>
   }
 
   if (authentication != null) {
-    return <TransactionCategoryContext.Provider value={[transactionCategory, setTransactionCategory]}>
-      <WalletContext.Provider value={[wallet, setWallet]}>
-        <Header/>
-        <Switch>
-          <Route exact path="/">
-            <HomePage/>
-          </Route>
-          <Route exact path="/wallets">
-            <WalletsPage/>
-          </Route>
-          <Route exact path="/categories">
-            <CategoriesPage/>
-          </Route>
-          <Route exact path="/categories/create">
-            <CategoryCreatePage/>
-          </Route>
-          <Route exact path="/wallets/create">
-            <CreateWalletPage/>
-          </Route>
-          <Route path="/wallets/:id">
-            <WalletPage/>
-          </Route>
-          <Route exact path="/logout">
-            <LogoutPage/>
-          </Route>
-          <Route exact path="/transactions/add">
-            <AddTransactionPage/>
-          </Route>
-          <Route exact path="/stats">
-            <StatisticPage/>
-          </Route>
-        </Switch>
-      </WalletContext.Provider>
-    </TransactionCategoryContext.Provider>
+    return <div>
+      <Header/>
+      <Switch>
+        <Route exact path="/">
+          <HomePage/>
+        </Route>
+        <Route exact path="/wallets">
+          <WalletsPage/>
+        </Route>
+        <Route exact path="/categories">
+          <CategoriesPage/>
+        </Route>
+        <Route exact path="/categories/create">
+          <CategoryCreatePage/>
+        </Route>
+        <Route exact path="/wallets/create">
+          <CreateWalletPage/>
+        </Route>
+        <Route path="/wallets/:id">
+          <WalletPage/>
+        </Route>
+        <Route exact path="/logout">
+          <LogoutPage/>
+        </Route>
+        <Route exact path="/transactions/add">
+          <AddTransactionPage/>
+        </Route>
+        <Route exact path="/stats">
+          <StatisticPage/>
+        </Route>
+      </Switch>
+    </div>
   }
   return <Redirect to="/login"/>
 }
