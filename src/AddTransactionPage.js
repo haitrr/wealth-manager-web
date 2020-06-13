@@ -1,4 +1,5 @@
 import {getEndpoint} from "./api";
+import moment from "moment";
 import React from "react";
 import {post} from "./httpClient";
 import history from "./history";
@@ -13,7 +14,7 @@ const AddTransactionPage = () => {
     values.walletId = parseInt(values.walletId)
     values.amount = parseInt(values.amount)
     values.categoryId = parseInt(values.categoryId)
-    values.createdAt = new Date(values.createdAt).toISOString();
+    values.createdAt = moment(values.createdAt).toISOString();
     setSubmitting(true)
     post(getEndpoint() + "/transactions", values).then(d => {
       setSubmitting(false)
@@ -49,7 +50,13 @@ const AddTransactionPage = () => {
     </div>
     <div>
       <label>At:</label>
-      <input type="datetime-local" name="createdAt" required onChange={handleChange} defaultValue={Date.now().toLocaleString()}/>
+      <input
+        type="datetime-local"
+        name="createdAt"
+        required
+        onChange={handleChange}
+        defaultValue={moment().format('yyyy-MM-DDThh:mm')}
+      />
     </div>
     <button type="submit" disabled={isSubmitting}>Add</button>
   </form>
