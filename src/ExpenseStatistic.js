@@ -54,6 +54,13 @@ const ExpenseStatistic = () => {
         </Pie>
       </PieChart>
     </ResponsiveContainer>
+    <ExpenseByCategory transactions={transactions}/>
+  </div>
+}
+
+const ExpenseByCategory = ({transactions}) => {
+  const expenseByCategory = getExpenseByCategory(transactions)
+  return <div>
     {expenseByCategory.map(e => {
       return <div key={e.name}>{e.name} : {formatMoney(e.amount, VND)}</div>
     })}
