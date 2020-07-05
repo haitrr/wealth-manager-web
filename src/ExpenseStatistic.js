@@ -36,8 +36,8 @@ const ExpenseStatistic = () => {
     <h2>Total: {formatMoney(total, VND)}</h2>
     <TransactionFilter onChange={(values) => {
       setFilters({
+        dateFrom: moment(values.dateFrom).toISOString(),
         dateTo: moment(values.dateTo).toISOString(),
-        dateFrom: moment(values.dateFrom).toISOString()
       })
     }}/>
     <ResponsiveContainer width="100%" height={500}>
