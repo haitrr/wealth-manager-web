@@ -11,7 +11,7 @@ const Transactions = () => {
     return <h3>Loading</h3>
   }
   return <div>
-    {transactions.map(transaction => <div>
+    {transactions.map(transaction => <div key={transaction.id}>
       <div>{formatMoney(transaction.amount, VND)}</div>
       <div>{transaction.categoryName}</div>
       <hr/>

@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 const CategoriesTree = ({tree}) => {
   return <div style={{marginLeft: "0.5rem"}}>
     <div>{tree.name}</div>
-    {tree.children && tree.children.map(t => <CategoriesTree tree={t}/>)}
+    {tree.children && tree.children.map(t => <CategoriesTree tree={t} key={t.id}/>)}
   </div>
 }
 
