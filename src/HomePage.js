@@ -2,6 +2,8 @@ import React from "react";
 import {Link} from "react-router-dom";
 import {useTransactions} from "./useTransactions";
 import useWallets from "./useWallets";
+import {formatMoney} from "./formatMoney";
+import {VND} from "./currencyCodes";
 
 const Transactions = () => {
   const [transactions] = useTransactions()
@@ -10,7 +12,7 @@ const Transactions = () => {
   }
   return <div>
     {transactions.map(transaction => <div>
-      <div>{transaction.amount}</div>
+      <div>{formatMoney(transaction.amount, VND)}</div>
       <div>{transaction.categoryName}</div>
       <hr/>
     </div>)}
@@ -20,7 +22,7 @@ const Transactions = () => {
 
 const HomePage = () => {
   const wallets = useWallets()
-  if(wallets == null) return <h1>Loading</h1>
+  if (wallets == null) return <h1>Loading</h1>
   const balance = wallets.reduce((a, b) => a + b.balance, 0)
   return <div>
     <h1>Home Page</h1>
@@ -30,7 +32,7 @@ const HomePage = () => {
     <br/>
     <Link to="transactions/add">Add Transaction</Link>
     <h2>Balance</h2>
-    <div>{balance}</div>
+    <div>{formatMoney(balance, VND)}</div>
     <h2>Transactions</h2>
     <Transactions/>
   </div>;
