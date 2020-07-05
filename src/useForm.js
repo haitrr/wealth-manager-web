@@ -1,7 +1,7 @@
 import React from "react";
 
-const useForm = (submitCallback, onChange) => {
-  const [values, setValues] = React.useState({})
+const useForm = (submitCallback, onChange, defaultValues) => {
+  const [values, setValues] = React.useState({...defaultValues})
   const [isSubmitting, setSubmitting] = React.useState(false)
 
   const handleSubmit = (e) => {
@@ -10,6 +10,8 @@ const useForm = (submitCallback, onChange) => {
   }
 
   const handleChange = e => {
+    console.log(e.target)
+    console.log(values)
     e.preventDefault()
     const {name, value} = e.target;
     const newValues = {...values, [name]: value}
