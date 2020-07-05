@@ -6,6 +6,7 @@ import history from "./history";
 import useWallets from "./useWallets";
 import useForm from "./useForm";
 import CategorySelect from "./CategorySelect";
+import DateTimeSelect from "./DateTimeSelect";
 
 const AddTransactionPage = () => {
   const wallets = useWallets();
@@ -50,12 +51,11 @@ const AddTransactionPage = () => {
     </div>
     <div>
       <label>At:</label>
-      <input
-        type="datetime-local"
+      <DateTimeSelect
         name="createdAt"
         required
         onChange={handleChange}
-        defaultValue={moment().format('yyyy-MM-DDThh:mm')}
+        defaultValue={moment().format('YYYY-MM-DDThh:mm')}
       />
     </div>
     <button type="submit" disabled={isSubmitting}>Add</button>
