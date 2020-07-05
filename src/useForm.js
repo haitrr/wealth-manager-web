@@ -10,8 +10,6 @@ const useForm = (submitCallback, onChange, defaultValues) => {
   }
 
   const handleChange = e => {
-    console.log(e.target)
-    console.log(values)
     e.preventDefault()
     const {name, value} = e.target;
     const newValues = {...values, [name]: value}

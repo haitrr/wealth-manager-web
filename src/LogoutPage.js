@@ -9,7 +9,6 @@ const LogoutPage = () => {
     setAuthentication({token: null})
     RemoveToken()
   }, [])
-  console.log(authentication)
   if (!authentication.token) {
     return <Redirect to="/login"/>
   } else {

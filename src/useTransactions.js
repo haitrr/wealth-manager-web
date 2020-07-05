@@ -17,7 +17,6 @@ const mapTransactionCategoriesName = (transactions, categories) => {
 export const useTransactions = (defaultFilters) => {
   const [transactions, setTransactions] = React.useState(null)
   const [filters, setFilters] = React.useState(defaultFilters)
-  console.log(filters)
   React.useEffect(() => {
     get(`${getEndpoint()}/transactions`, filters).then(data => setTransactions(data.items))
   }, [filters])

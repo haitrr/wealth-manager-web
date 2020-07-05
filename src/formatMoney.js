@@ -25,5 +25,3 @@ const formatVND = (amount) => {
   return rs
 }
 
-console.log(formatVND(31500.21))
-
