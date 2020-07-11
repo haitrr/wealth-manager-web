@@ -7,16 +7,14 @@ import CreateWalletPage from "./CreateWalletPage";
 import WalletPage from "./WalletPage";
 import LogoutPage from "./LogoutPage";
 import AddTransactionPage from "./AddTransactionPage";
-import {get} from "./httpClient";
-import {getEndpoint} from "./api";
 import CategoriesPage from "./CategoriesPage";
 import CategoryCreatePage from "./CategoryCreatePage";
-import Header from "./Header";
+import Header from "./Header/Header";
 import StatisticPage from "./StatisticPage";
 import useWallets from "./useWallets";
+import BudgetsPage from "./BudgetPage";
 
 export const TransactionCategoryContext = React.createContext([{categories: null, tree: null}, null])
-export const WalletContext = React.createContext([{wallets: null}, null])
 
 const AuthenticatedPage = () => {
   const [authentication] = React.useContext(AuthenticationContext)
@@ -55,6 +53,9 @@ const AuthenticatedPage = () => {
         </Route>
         <Route exact path="/stats">
           <StatisticPage/>
+        </Route>
+        <Route exact path="/budgets">
+          <BudgetsPage/>
         </Route>
       </Switch>
     </div>
