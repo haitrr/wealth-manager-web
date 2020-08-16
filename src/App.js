@@ -4,6 +4,7 @@ import AuthenticatedPage from "./AuthenticatedPage";
 import LoginPage from "./LoginPage";
 import {GetToken} from "./Jwt";
 import history from "./history";
+import 'antd/dist/antd.css';
 
 export const AuthenticationContext = React.createContext([{}, null])
 

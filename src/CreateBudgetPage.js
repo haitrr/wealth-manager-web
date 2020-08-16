@@ -1,6 +1,10 @@
 import React from "react";
 import useForm from "./useForm";
 import CategoryMultiSelect from "./CategoryMultiSelect";
+import MoneyInput from "./ MoneyInput";
+import {Checkbox} from "antd";
+import TimeRangeInput from "./TimeRangeInput";
+import WalletMultiSelect from "./WalletMultiSelect";
 
 const CreateBudgetPage = () => {
   const onSubmit = (values, setSubmitting) => {
@@ -11,11 +15,16 @@ const CreateBudgetPage = () => {
   return <div>
   <h1>Create Budget</h1>
     <form onSubmit={handleSubmit}>
+      <p>Categories</p>
       <CategoryMultiSelect onChange={handleChange} value={values.categories} name={values.categories}/>
-      {/*<MoneyInput/>*/}
-      {/*<TimeRangeInput/>*/}
-      {/*<WalletMultiSelect/>*/}
-      {/*<CheckBox/>*/}
+      <p>Amount</p>
+      <MoneyInput/>
+      <p>Time Range</p>
+      <TimeRangeInput/>
+      <p>Wallets</p>
+      <WalletMultiSelect/>
+      <p>Repeat ?</p>
+      <Checkbox/>
       <button type="submit" disabled={isSubmitting}>Create</button>
     </form>
   </div>
