@@ -3,7 +3,7 @@ import React from "react";
 import {Tree} from 'antd';
 import useTransactionCategoriesTree from "./useTransactionCategoriesTree";
 
-const CategoryMultiSelect = (props) => {
+const CategoryMultiSelect = ({onChange}) => {
   const [categories] = useTransactionCategoriesTree()
   if (categories == null) {
     return <h1>Loading</h1>
