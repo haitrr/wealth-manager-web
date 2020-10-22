@@ -1,7 +1,10 @@
 import React from "react";
 import useTransactionsCategories from "./useTransactionCategories";
 
-const CategorySelect = (props) => {
+interface CategorySelectProps {
+}
+
+const CategorySelect = (props: CategorySelectProps) => {
   const categories = useTransactionsCategories()
   if (categories == null) {
     return <h1>Loading</h1>
