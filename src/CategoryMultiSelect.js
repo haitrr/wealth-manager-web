@@ -1,6 +1,5 @@
-import useTransactionsCategories from "./useTransactionCategories";
 import React from "react";
-import {Tree} from 'antd';
+import Tree from '@material-ui/lab/TreeView';
 import useTransactionCategoriesTree from "./useTransactionCategoriesTree";
 
 const CategoryMultiSelect = ({onChange}) => {

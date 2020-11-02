@@ -2,7 +2,7 @@ import React from "react";
 import useForm from "./useForm";
 import CategoryMultiSelect from "./CategoryMultiSelect";
 import MoneyInput from "./ MoneyInput";
-import {Checkbox} from "antd";
+import Checkbox from '@material-ui/core/Checkbox';
 import TimeRangeInput from "./TimeRangeInput";
 import WalletMultiSelect from "./WalletMultiSelect";
 

@@ -1,7 +1,7 @@
-import {Input} from "antd";
 import React from 'react';
+import TextField from '@material-ui/core/TextField';
 
 const MoneyInput = () => {
-  return <Input prefix="VND"/>
+  return <TextField prefix="VND"/>
 }
 export default MoneyInput;

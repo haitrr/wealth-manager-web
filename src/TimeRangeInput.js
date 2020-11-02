@@ -1,8 +1,8 @@
-import {DatePicker} from "antd";
 import React from "react";
+import TextField from '@material-ui/core/TextField';
 
 const TimeRangeInput = () => {
-  return <DatePicker.RangePicker/>
+  return <TextField type="date"/>
 }
 
 export default TimeRangeInput;
