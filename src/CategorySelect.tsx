@@ -2,6 +2,8 @@ import React, {FC, useState} from "react";
 import useTransactionsCategories from "./useTransactionCategories";
 import Modal from '@material-ui/core/Modal';
 import {Button, Paper} from "@material-ui/core";
+import useTransactionCategoriesTree, {CategoryTree} from "./useTransactionCategoriesTree";
+import {TreeItem, TreeView} from "@material-ui/lab";
 
 interface CategorySelectProps {
 }
@@ -40,20 +42,30 @@ interface CategorySelectModalProps {
 
 const CategorySelectModal: FC<CategorySelectModalProps> = (props) => {
   const {visible, close} = props;
-  const categories = useTransactionsCategories()
-  if (!categories) {
-    return <div></div>
+  const [tree] = useTransactionCategoriesTree()
+  if (tree === null) {
+    return <div/>
   }
 
   return <Modal
     open={visible}
     style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}
   >
-    <Paper>
-      {categories.map(t => <div>{t.name}</div>)}
+    <Paper style={{minWidth: "30vw", minHeight: "30vh"}}>
+      <TreeView>
+        <CategoryTreeSelect categories={tree}/>
+      </TreeView>
       <Button color="primary" onClick={close}>Close</Button>
     </Paper>
   </Modal>
+}
+
+const CategoryTreeSelect: React.FC<{ categories: CategoryTree }> = ({categories}) => {
+  return <TreeItem label={categories.name} nodeId={categories.id.toString()}>
+    {categories.children && categories.children.map((c: any) => {
+      return <CategoryTreeSelect categories={c}/>;
+    })}
+  </TreeItem>
 }
 
 export default CategorySelect;
