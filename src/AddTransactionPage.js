@@ -5,7 +5,7 @@ import {post} from "./httpClient";
 import history from "./history";
 import useWallets from "./useWallets";
 import useForm from "./useForm";
-import CategorySelect from "./CategorySelect";
+import CategorySelect from "./CategorySelect/CategorySelect";
 import DateTimeSelect from "./DateTimeSelect";
 
 const AddTransactionPage = () => {
