@@ -1,8 +1,14 @@
 import React, {useState} from "react";
 import useTransactionsCategories from "../useTransactionCategories";
 import CategorySelectModal from "./CategorySelectModal";
+import {Input} from "antd";
 
-const CategorySelect = () => {
+interface Props {
+  onChange?: (value: number) => void;
+}
+
+
+const CategorySelect: React.FC<Props> = ({onChange}) => {
   const categories = useTransactionsCategories()
   const [selectedCategoryId, setSelectCategoryId] = useState<null | number>(null)
   const [modalVisible, setModalVisible] = useState<boolean>(false)
@@ -26,11 +32,13 @@ const CategorySelect = () => {
       }}
       onOk={(value) => {
         setSelectCategoryId(value)
+        if(onChange) {
+          onChange(value)
+        }
         setModalVisible(false)
       }}/>
-    <span onClick={() => setModalVisible(true)}>
-    {name}
-    </span>
+    <Input value={name} onClick={() => setModalVisible(true)}>
+    </Input>
   </div>
 }
 
