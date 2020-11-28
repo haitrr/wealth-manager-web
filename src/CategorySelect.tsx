@@ -40,6 +40,7 @@ interface CategorySelectModalProps {
   close: () => void;
 }
 
+
 const CategorySelectModal: FC<CategorySelectModalProps> = (props) => {
   const {visible, close} = props;
   const [tree] = useTransactionCategoriesTree()
@@ -47,14 +48,12 @@ const CategorySelectModal: FC<CategorySelectModalProps> = (props) => {
     return <div/>
   }
 
+
   return <Modal
     open={visible}
     style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}
   >
     <Paper style={{minWidth: "30vw", minHeight: "30vh"}}>
-      <TreeView>
-        <CategoryTreeSelect categories={tree}/>
-      </TreeView>
       <Button color="primary" onClick={close}>Close</Button>
     </Paper>
   </Modal>
