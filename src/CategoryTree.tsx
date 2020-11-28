@@ -3,7 +3,7 @@ import {DataNode} from "antd/lib/tree";
 import {Tree} from "antd";
 import React from "react";
 
-const buildTreeData = (root: CategoryTree[]): DataNode[] => {
+export const buildTreeData = (root: CategoryTree[]): DataNode[] => {
   return root.map(tree => {
     return {title: tree.name, key: tree.id, children: buildTreeData(tree.children)}
   })

@@ -1,9 +1,7 @@
 import React, {FC, useState} from "react";
 import useTransactionsCategories from "./useTransactionCategories";
-import Modal from '@material-ui/core/Modal';
-import {Button, Paper} from "@material-ui/core";
 import useTransactionCategoriesTree, {CategoryTree} from "./useTransactionCategoriesTree";
-import {TreeItem, TreeView} from "@material-ui/lab";
+import {Modal, TreeSelect} from "antd";
 
 interface CategorySelectProps {
 }
@@ -50,21 +48,31 @@ const CategorySelectModal: FC<CategorySelectModalProps> = (props) => {
 
 
   return <Modal
-    open={visible}
-    style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}
+    visible={visible}
+    onCancel={close}
+    //style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}
   >
-    <Paper style={{minWidth: "30vw", minHeight: "30vh"}}>
-      <Button color="primary" onClick={close}>Close</Button>
-    </Paper>
+    <CategoryTreeSelect/>
   </Modal>
 }
 
-const CategoryTreeSelect: React.FC<{ categories: CategoryTree }> = ({categories}) => {
-  return <TreeItem label={categories.name} nodeId={categories.id.toString()}>
-    {categories.children && categories.children.map((c: any) => {
-      return <CategoryTreeSelect categories={c}/>;
-    })}
-  </TreeItem>
+const CategoryTreeSelect: React.FC = () => {
+  const [categories] = useTransactionCategoriesTree()
+  if (categories === null) {
+    return <div>Loading</div>;
+  }
+
+  const renderTreeNodes = (cs: CategoryTree[]) => {
+    return cs.map(c => {
+      return <TreeSelect.TreeNode value={c.id} title={c.name}>
+        {renderTreeNodes(c.children)}
+      </TreeSelect.TreeNode>
+    })
+  }
+
+  return <TreeSelect showSearch style={{width: "100%"}}>
+    {renderTreeNodes([categories])}
+  </TreeSelect>
 }
 
 export default CategorySelect;
