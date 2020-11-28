@@ -1,24 +1,26 @@
 import React from "react";
-import useTransactionCategoriesTree, {CategoryTree} from "../useTransactionCategoriesTree";
-import {TreeSelect} from "antd";
+import useTransactionCategoriesTree from "../useTransactionCategoriesTree";
+import {Tree} from "antd";
+import {buildTreeData} from "../CategoryTree";
 
 const CategoryTreeSelect: React.FC<{ onChange: (value: number) => void }> = ({onChange}) => {
-  const [categories] = useTransactionCategoriesTree()
-  if (categories === null) {
-    return <div>Loading</div>;
+  const onSelect = (selectedKeys: React.Key[]) => {
+    if(selectedKeys.length === 0) throw new Error();
+    onChange(selectedKeys[0] as number)
   }
 
-  const renderTreeNodes = (cs: CategoryTree[]) => {
-    return cs.map(c => {
-      return <TreeSelect.TreeNode value={c.id} title={c.name}>
-        {renderTreeNodes(c.children)}
-      </TreeSelect.TreeNode>
-    })
+  const [tree] = useTransactionCategoriesTree()
+  if (!tree) {
+    return <div>Loading</div>
   }
-
-  return <TreeSelect onChange={onChange} showSearch style={{width: "100%"}}>
-    {renderTreeNodes([categories])}
-  </TreeSelect>
+  const treeData = buildTreeData([tree])
+  console.log(treeData)
+  return <Tree
+    defaultExpandAll
+    selectable
+    onSelect={onSelect}
+    treeData={treeData}
+    showLine={true}/>
 }
 
 export default CategoryTreeSelect;
