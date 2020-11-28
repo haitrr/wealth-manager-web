@@ -16,6 +16,8 @@ const buildCategoriesTree = (categories: any): any => {
       const parent = categories.find((t: any) => t.id === c.parentId)
       if (parent.children) {
         parent.children.push(c)
+      } else {
+        parent.children = [c]
       }
     } else {
       root.children.push(c)
