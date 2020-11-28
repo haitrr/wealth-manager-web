@@ -1,8 +1,8 @@
 import React from "react";
-import TextField from '@material-ui/core/TextField';
+import {Input} from "antd";
 
 const TimeRangeInput = () => {
-  return <TextField type="date"/>
+  return <Input type="date"/>
 }
 
 export default TimeRangeInput;

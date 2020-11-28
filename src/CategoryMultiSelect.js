@@ -1,8 +1,8 @@
 import React from "react";
-import Tree from '@material-ui/lab/TreeView';
 import useTransactionCategoriesTree from "./useTransactionCategoriesTree";
+import {Tree} from "antd";
 
-const CategoryMultiSelect = ({onChange}) => {
+const CategoryMultiSelect = () => {
   const [categories] = useTransactionCategoriesTree()
   if (categories == null) {
     return <h1>Loading</h1>

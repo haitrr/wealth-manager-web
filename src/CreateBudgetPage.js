@@ -2,9 +2,9 @@ import React from "react";
 import useForm from "./useForm";
 import CategoryMultiSelect from "./CategoryMultiSelect";
 import MoneyInput from "./ MoneyInput";
-import Checkbox from '@material-ui/core/Checkbox';
 import TimeRangeInput from "./TimeRangeInput";
 import WalletMultiSelect from "./WalletMultiSelect";
+import {Checkbox} from "antd";
 
 const CreateBudgetPage = () => {
   const onSubmit = (values, setSubmitting) => {
@@ -13,7 +13,7 @@ const CreateBudgetPage = () => {
   }
   const [values, handleChange, handleSubmit, isSubmitting] = useForm(onSubmit, null, {})
   return <div>
-  <h1>Create Budget</h1>
+    <h1>Create Budget</h1>
     <form onSubmit={handleSubmit}>
       <p>Categories</p>
       <CategoryMultiSelect onChange={handleChange} value={values.categories} name={values.categories}/>
