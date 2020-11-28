@@ -10,15 +10,16 @@ interface CreateCategoryFormValues {
 }
 
 
-const createCategory = (
+const createCategory = async (
   values: CreateCategoryFormValues,
   setSubmitting: (submitting: boolean) => void) => {
   setSubmitting(true)
-  post(getEndpoint() + '/transaction-categories', {...values}).then(() => {
+  try {
+    await post(getEndpoint() + '/transaction-categories', {...values})
     history.push('/categories')
-  }).catch(() => {
+  } catch {
     setSubmitting(false)
-  })
+  }
 }
 
 
