@@ -14,7 +14,6 @@ const CategoryTreeSelect: React.FC<{ onChange: (value: number) => void }> = ({on
     return <div>Loading</div>
   }
   const treeData = buildTreeData([tree])
-  console.log(treeData)
   return <Tree
     defaultExpandAll
     selectable

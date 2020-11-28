@@ -15,7 +15,6 @@ const CategoriesTree = () => {
     return <div>Loading</div>
   }
   const treeData = buildTreeData([tree])
-  console.log(treeData)
   return <Tree defaultExpandAll treeData={treeData} showLine={true}/>
 }
 
