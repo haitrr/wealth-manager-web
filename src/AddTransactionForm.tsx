@@ -21,9 +21,6 @@ const AddTransactionForm = () => {
   const [isSubmitting, setSubmitting] = useState<boolean>(false)
 
   const handleSubmit = (values: AddTransactionFormValues) => {
-    // values.walletId = parseInt(values.walletId)
-    // values.amount = parseInt(values.amount)
-    // values.categoryId = parseInt(values.categoryId)
     values.createdAt = moment(values.createdAt).toISOString();
     setSubmitting(true)
     post(getEndpoint() + "/transactions", values).then(d => {
