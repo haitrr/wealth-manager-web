@@ -7,6 +7,7 @@ import CategorySelect from "./CategorySelect";
 import DateTimeSelect from "./DateTimeSelect";
 import React, {useState} from "react";
 import {Form, Input} from "antd";
+import WalletSelect from "./WalletSelect";
 
 export interface AddTransactionFormValues {
   createdAt: string;
@@ -16,8 +17,6 @@ export interface AddTransactionFormValues {
 }
 
 const AddTransactionForm = () => {
-  const wallets = useWallets();
-
   const [form] = Form.useForm()
   const [isSubmitting, setSubmitting] = useState<boolean>(false)
 
@@ -42,12 +41,7 @@ const AddTransactionForm = () => {
              placeholder="Amount"/>
     </Form.Item>
     <Form.Item name="walletId" label="Wallet" rules={[{required: true}]}>
-      <select required name="walletId">
-        <option/>
-        {wallets.map((wallet) => {
-          return <option key={wallet.id} value={wallet.id}>{wallet.name}</option>
-        })}
-      </select>
+      <WalletSelect/>
     </Form.Item>
     <Form.Item label="Category" name="categoryId" rules={[{required: true}]}>
       <CategorySelect/>
