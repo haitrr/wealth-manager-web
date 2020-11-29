@@ -36,7 +36,7 @@ const AddTransactionForm = () => {
     })
   }
 
-  return <Form form={form} onFinish={handleSubmit}>
+  return <Form labelCol={{span: 8}} wrapperCol={{span: 8}} form={form} onFinish={handleSubmit}>
     <Form.Item name="amount" label="Amount" rules={[{required: true}]}>
       <Input type="number"
              placeholder="Amount"/>
