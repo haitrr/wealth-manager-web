@@ -3,7 +3,7 @@ import React from "react";
 import {Moment} from "moment";
 
 interface Props {
-  defaultValue: string;
+  defaultValue?: string;
   onChange?: (value: Moment | null) => void;
   value?: Moment,
   required: boolean;

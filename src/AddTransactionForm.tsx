@@ -35,7 +35,13 @@ const AddTransactionForm = () => {
     })
   }
 
-  return <Form labelCol={{span: 8}} wrapperCol={{span: 8}} form={form} onFinish={handleSubmit}>
+  return <Form
+    validateMessages={{required: '${label} is required!'}}
+    labelCol={{span: 8}}
+    wrapperCol={{span: 8}}
+    form={form}
+    onFinish={handleSubmit}
+  >
     <Form.Item name="amount" label="Amount" rules={[{required: true}]}>
       <Input type="number"
              placeholder="Amount"/>
@@ -46,10 +52,9 @@ const AddTransactionForm = () => {
     <Form.Item label="Category" name="categoryId" rules={[{required: true}]}>
       <CategorySelect/>
     </Form.Item>
-    <Form.Item name="createdAt" label="At" rules={[{required: true}]}>
+    <Form.Item name="createdAt" label="At" initialValue={moment()} rules={[{required: true}]}>
       <DateTimeSelect
         required
-        defaultValue={moment().format('YYYY-MM-DDThh:mm')}
       />
     </Form.Item>
     <button type="submit" disabled={isSubmitting}>Add</button>
