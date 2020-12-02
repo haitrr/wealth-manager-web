@@ -2,6 +2,12 @@ import React from "react";
 import {get} from "./httpClient";
 import {getEndpoint} from "./api";
 
+export interface CategoryTree {
+  name: string;
+  id: number;
+  children: CategoryTree[];
+}
+
 const buildCategoriesTree = (categories: any): any => {
   const root: CategoryTree = {
     name: "All",
@@ -24,12 +30,6 @@ const buildCategoriesTree = (categories: any): any => {
     }
   })
   return root;
-}
-
-export interface CategoryTree {
-  name: string;
-  id: number;
-  children: CategoryTree[];
 }
 
 const useTransactionCategoriesTree = (): [CategoryTree | null] => {

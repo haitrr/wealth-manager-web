@@ -1,7 +1,7 @@
+import React from "react";
 import useTransactionCategoriesTree, {CategoryTree} from "./useTransactionCategoriesTree";
 import {DataNode} from "antd/lib/tree";
 import {Tree} from "antd";
-import React from "react";
 
 export const buildTreeData = (root: CategoryTree[]): DataNode[] => {
   return root.map(tree => {

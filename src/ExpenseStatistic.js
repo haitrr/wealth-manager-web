@@ -1,6 +1,6 @@
 import {useTransactions} from "./useTransactions";
 import React from "react";
-import {PieChart, Pie, Legend, Cell, Label, ResponsiveContainer} from 'recharts'
+import {PieChart, Pie, Legend, Cell, ResponsiveContainer} from 'recharts'
 import {formatMoney} from "./formatMoney";
 import {VND} from './currencyCodes'
 import moment from "moment";

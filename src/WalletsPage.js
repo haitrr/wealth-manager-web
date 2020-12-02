@@ -22,7 +22,7 @@ const WalletsPage = () => {
     }).catch(e => {
       alert(e.message)
     })
-  }, [])
+  }, [authentication.token])
   return <div>
     <h1>Wallets</h1>
     <Link to="/wallets/create">Create</Link>

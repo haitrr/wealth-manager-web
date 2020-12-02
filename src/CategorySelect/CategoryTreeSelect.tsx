@@ -5,7 +5,7 @@ import {buildTreeData} from "../CategoryTree";
 
 const CategoryTreeSelect: React.FC<{ onChange: (value: number) => void }> = ({onChange}) => {
   const onSelect = (selectedKeys: React.Key[]) => {
-    if(selectedKeys.length === 0) throw new Error();
+    if (selectedKeys.length === 0) throw new Error();
     onChange(selectedKeys[0] as number)
   }
 

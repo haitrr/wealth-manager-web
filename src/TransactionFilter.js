@@ -5,7 +5,7 @@ import moment from "moment";
 const TransactionFilter = ({onChange}) => {
   const startOfMonth = moment().startOf("month").format("YYYY-MM-DD")
   const today = moment().format("YYYY-MM-DD")
-  const [values, handleChange, handleSubmit, isSubmitting] = useForm(null, onChange, {dateFrom:startOfMonth, dateTo: today})
+  const [values, handleChange] = useForm(null, onChange, {dateFrom: startOfMonth, dateTo: today})
   return <form>
     <label>From</label>
     <input type="date" name="dateFrom" defaultValue={startOfMonth} max={values.dateTo} onChange={handleChange}/>

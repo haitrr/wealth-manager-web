@@ -1,5 +1,5 @@
-import useWallets from "./useWallets";
 import React from "react";
+import useWallets from "./useWallets";
 import {Select} from "antd";
 
 interface Props {

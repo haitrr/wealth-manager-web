@@ -17,7 +17,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^4.0.1",
     "recharts": "^1.8.5",
     "typescript": "^4.0.3"
   },
@@ -34,7 +34,35 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+    ],
+    "plugins": [
+      "react",
+      "@typescript-eslint"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "ecmaVersion": 2018,
+      "sourceType": "module",
+      "createDefaultProgram": true,
+      "project": "./tsconfig.json"
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.tsx"
+        ],
+        "rules": {
+          "no-use-before-define": "off",
+          "@typescript-eslint/no-use-before-define": [
+            "error"
+          ]
+        }
+      }
+    ]
   },
   "browserslist": {
     "production": [

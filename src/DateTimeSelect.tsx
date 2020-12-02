@@ -1,5 +1,5 @@
-import {DatePicker} from "antd";
 import React from "react";
+import {DatePicker} from "antd";
 import {Moment} from "moment";
 
 interface Props {
