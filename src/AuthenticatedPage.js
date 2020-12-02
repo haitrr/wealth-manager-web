@@ -11,7 +11,6 @@ import CategoriesPage from "./CategoriesPage";
 import CategoryCreatePage from "./CategoryCreatePage";
 import Header from "./Header/Header";
 import StatisticPage from "./StatisticPage";
-import useWallets from "./useWallets";
 import BudgetsPage from "./BudgetPage";
 import CreateBudgetPage from "./CreateBudgetPage";
 
@@ -19,11 +18,6 @@ export const TransactionCategoryContext = React.createContext([{categories: null
 
 const AuthenticatedPage = () => {
   const [authentication] = React.useContext(AuthenticationContext)
-  const wallets = useWallets()
-  if (wallets === null) {
-    return <h1>Loading</h1>
-  }
-
   if (authentication != null) {
     return <div>
       <Header/>

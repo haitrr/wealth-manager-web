@@ -35,6 +35,7 @@ export function get(url, params) {
       return response.json()
     } else if (response.status === 401) {
       history.push("/logout")
+      throw "Please login"
     } else {
       response.json().then(data => {
         throw data.message

@@ -2,13 +2,20 @@ import React from "react";
 import {Formik} from "formik";
 import {AuthenticationContext} from "./App";
 import {Redirect} from "react-router-dom";
-import {SaveToken} from "./Jwt";
+import {GetToken, SaveToken} from "./Jwt";
 import {getEndpoint} from "./api";
 
 const LoginPage = () => {
-  const [authentication, setAuthentication] = React.useContext(AuthenticationContext);
+  const [authentication, setAuthentication] = React.useState({})
+  if (!authentication.token) {
+    const token = GetToken()
+    if (token) {
+      setAuthentication({token})
+    }
+  }
+
   if (authentication.token) {
-    return <Redirect to="/"/>
+     return <Redirect to="/"/>
   }
 
   return (
