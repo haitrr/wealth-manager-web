@@ -34,4 +34,4 @@ jobs:
         app-name: 'wealth-manger-web'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_0a132674e67b420ba2a633054cfd2583 }}
-        package: .
+        package: ./build
