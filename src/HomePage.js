@@ -4,6 +4,8 @@ import {useTransactions} from "./useTransactions";
 import useWallets from "./useWallets";
 import {formatMoney} from "./formatMoney";
 import {VND} from "./currencyCodes";
+import {DatePicker} from "antd";
+import TransactionFilterForm from "./TransactionFilterForm";
 
 const Transactions = () => {
   const [transactions] = useTransactions()
@@ -11,6 +13,7 @@ const Transactions = () => {
     return <h3>Loading</h3>
   }
   return <div>
+    <TransactionFilterForm/>
     {transactions.map(transaction => <div key={transaction.id}>
       <div>{formatMoney(transaction.amount, VND)}</div>
       <div>{transaction.categoryName}</div>
