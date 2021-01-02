@@ -3,7 +3,7 @@ import moment from 'moment';
 import { formatMoney } from './formatMoney';
 import { VND } from './currencyCodes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IconName } from '@fortawesome/free-solid-svg-icons'
+import { IconName } from '@fortawesome/free-solid-svg-icons';
 
 interface Transaction {
   createdAt: string;
@@ -28,15 +28,15 @@ const TransactionTimeline: React.FC<Props> = ({ transactions }) => {
     return group;
   }, {});
 
-
   // Edit: to add it in the array format instead
-  const groupArrays = Object.keys(groups).map((date) => {
-    return {
-      date,
-      transactions: groups[date],
-    };
-  }).sort((a,b) => Number.parseInt(b.date) - Number.parseInt(a.date));
-
+  const groupArrays = Object.keys(groups)
+    .map((date) => {
+      return {
+        date,
+        transactions: groups[date],
+      };
+    })
+    .sort((a, b) => Number.parseInt(b.date) - Number.parseInt(a.date));
 
   return (
     <div>
@@ -44,11 +44,23 @@ const TransactionTimeline: React.FC<Props> = ({ transactions }) => {
         <div key={g.date}>
           <span>{moment.unix(Number.parseInt(g.date)).format('MMM DD YYYY')}</span>
           {g.transactions.map((t) => (
-            <div style={{ marginLeft: '1rem' }} key={t.id}>
-              <FontAwesomeIcon icon={t.iconName}/>
+            <div
+              style={{
+                marginLeft: '1rem',
+                marginRight: '5rem',
+                paddingBottom: "0.5rem",
+                paddingTop: "0.5  rem",
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
+              key={t.id}
+            >
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <FontAwesomeIcon icon={t.iconName} size="3x" />
+                <div style={{marginLeft: "1rem"}}>{t.categoryName}</div>
+              </div>
               <div>{formatMoney(t.amount, VND)}</div>
-              <div>{t.categoryName}</div>
-              <hr />
             </div>
           ))}
         </div>
