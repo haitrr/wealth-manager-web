@@ -9,7 +9,10 @@ import RootReducer from "./reducer";
 import {applyMiddleware, createStore} from "redux";
 import thunk from 'redux-thunk';
 import {Provider} from "react-redux";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
 
+library.add(fas)
 export const AuthenticationContext = React.createContext([{}, null])
 const store = createStore(RootReducer, applyMiddleware(thunk))
 

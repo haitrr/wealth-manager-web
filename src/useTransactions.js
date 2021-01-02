@@ -7,10 +7,13 @@ const mapTransactionCategoriesName = (transactions, categories) => {
   transactions.forEach(t => {
     let category = categories.find(c => c.id === t.categoryId)
     let name = "Others"
+    let iconName = 'boxes'
     if (category) {
       name = category.name
+      iconName = category.iconName
     }
     t.categoryName = name;
+    t.iconName = iconName
   })
 }
 

@@ -2,12 +2,15 @@ import React from 'react';
 import moment from 'moment';
 import { formatMoney } from './formatMoney';
 import { VND } from './currencyCodes';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconName } from '@fortawesome/free-solid-svg-icons'
 
 interface Transaction {
   createdAt: string;
   id: number;
   amount: number;
   categoryName: string;
+  iconName: IconName;
 }
 
 interface Props {
@@ -42,6 +45,7 @@ const TransactionTimeline: React.FC<Props> = ({ transactions }) => {
           <span>{moment.unix(Number.parseInt(g.date)).format('MMM DD YYYY')}</span>
           {g.transactions.map((t) => (
             <div style={{ marginLeft: '1rem' }} key={t.id}>
+              <FontAwesomeIcon icon={t.iconName}/>
               <div>{formatMoney(t.amount, VND)}</div>
               <div>{t.categoryName}</div>
               <hr />

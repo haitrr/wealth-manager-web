@@ -6,9 +6,10 @@ import { formatMoney } from './formatMoney';
 import { VND } from './currencyCodes';
 import TransactionFilterForm from './TransactionFilterForm';
 import TransactionTimeline from './TransactionTimeLine';
+import moment from 'moment'
 
 const Transactions = () => {
-  const [transactions] = useTransactions();
+  const [transactions] = useTransactions({dateFrom: moment().add(-1, 'month').toISOString()});
   if (!transactions) {
     return <div />;
   }
