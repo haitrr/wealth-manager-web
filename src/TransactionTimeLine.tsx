@@ -17,7 +17,7 @@ interface Props {
 const TransactionTimeline: React.FC<Props> = ({ transactions }) => {
   // this gives an object with dates as keys
   const groups = transactions.reduce((group: { [key: string]: Transaction[] }, transaction) => {
-    const date = moment(transaction.createdAt).startOf('day').format('DD-MM-YYYY');
+    const date = moment(transaction.createdAt).startOf('day').unix();
     if (!group[date]) {
       group[date] = [];
     }
@@ -32,14 +32,14 @@ const TransactionTimeline: React.FC<Props> = ({ transactions }) => {
       date,
       transactions: groups[date],
     };
-  });
+  }).sort((a,b) => Number.parseInt(b.date) - Number.parseInt(a.date));
 
 
   return (
     <div>
       {groupArrays.map((g) => (
         <div key={g.date}>
-          <span>{moment(g.date, 'DD-MM-YYYY').format('MMM DD')}</span>
+          <span>{moment.unix(Number.parseInt(g.date)).format('MMM DD YYYY')}</span>
           {g.transactions.map((t) => (
             <div style={{ marginLeft: '1rem' }} key={t.id}>
               <div>{formatMoney(t.amount, VND)}</div>
